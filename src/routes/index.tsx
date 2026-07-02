@@ -1,0 +1,525 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { motion, useScroll, useTransform, useReducedMotion, type Variants } from "framer-motion";
+import { useRef } from "react";
+import {
+  Mail, Phone, MapPin, ArrowUpRight, Sparkles,
+  Brain, MessageSquare, Mic, Code2, Database, Cpu, Rocket, GraduationCap,
+  Briefcase, Users, ChevronDown,
+} from "lucide-react";
+import portrait from "@/assets/ahmed-portrait.jpg";
+
+const GithubIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.26 5.68.41.36.77 1.06.77 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+  </svg>
+);
+const LinkedinIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/>
+  </svg>
+);
+const WhatsAppIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.125.298-.323.447-.484.149-.16.198-.272.298-.448.1-.175.05-.327-.025-.458-.075-.13-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.13 1.585 5.929L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Ahmed Hesham Kamel — Applied AI Engineer" },
+      { name: "description", content: "Portfolio of Ahmed Hesham Kamel — Applied AI Engineer specialising in Generative AI, RAG, NLP, and speech processing." },
+      { property: "og:title", content: "Ahmed Hesham Kamel — Applied AI Engineer" },
+      { property: "og:description", content: "Generative AI, NLP, and speech-processing engineer turning research into real-world systems." },
+    ],
+  }),
+  component: Portfolio,
+});
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } },
+};
+const stagger: Variants = { show: { transition: { staggerChildren: 0.08 } } };
+
+function Portfolio() {
+  return (
+    <div className="relative min-h-screen overflow-x-hidden">
+      <BackgroundFX />
+      <Nav />
+      <main className="relative">
+        <Hero />
+        <Marquee />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Education />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function BackgroundFX() {
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10">
+      <div className="absolute inset-0 grid-bg opacity-60" />
+      <div className="absolute top-[-10%] left-[-10%] h-[40rem] w-[40rem] rounded-full bg-primary/20 blur-3xl animate-blob" />
+      <div className="absolute top-[30%] right-[-15%] h-[35rem] w-[35rem] rounded-full bg-accent/20 blur-3xl animate-blob" style={{ animationDelay: "-6s" }} />
+      <div className="absolute bottom-[-10%] left-[20%] h-[30rem] w-[30rem] rounded-full bg-primary/10 blur-3xl animate-blob" style={{ animationDelay: "-12s" }} />
+    </div>
+  );
+}
+
+function Nav() {
+  const links = [
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#experience", label: "Experience" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
+  return (
+    <motion.header
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed top-4 inset-x-0 z-50 flex justify-center px-4"
+    >
+      <nav className="glass gradient-border rounded-full px-3 py-2 flex items-center gap-1 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+        <a href="#top" className="font-display font-semibold text-sm px-3 py-1.5 flex items-center gap-2">
+          <span className="inline-block h-2 w-2 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]" />
+          Ahmed.H
+        </a>
+        <div className="hidden md:flex items-center">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-full hover:bg-white/5">
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <a
+          href="#contact"
+          className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium px-4 py-1.5 hover:opacity-90 transition"
+        >
+          Let's talk <ArrowUpRight className="h-3.5 w-3.5" />
+        </a>
+      </nav>
+    </motion.header>
+  );
+}
+
+function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+
+  return (
+    <section ref={ref} id="top" className="relative min-h-screen flex items-center pt-32 pb-20 px-6">
+      <motion.div style={{ y, opacity }} className="container mx-auto max-w-6xl grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
+        <motion.div variants={stagger} initial="hidden" animate="show" className="space-y-7">
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 glass rounded-full px-3 py-1.5 text-xs text-muted-foreground">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+            </span>
+            Available for AI engineering roles & collaborations
+          </motion.div>
+
+          <motion.h1 variants={fadeUp} className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02]">
+            Building intelligent
+            <br />
+            systems with{" "}
+            <span className="text-gradient">applied AI</span>.
+          </motion.h1>
+
+          <motion.p variants={fadeUp} className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+            I'm <span className="text-foreground font-medium">Ahmed Hesham Kamel</span> — an Applied AI Engineer focused on Generative AI, NLP, RAG pipelines, and speech-AI. I turn research-grade models into reliable, production-ready products.
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
+            <a href="#projects" className="group inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 text-sm font-medium glow-ring hover:-translate-y-px transition">
+              View my work
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+            </a>
+            <a href="mailto:a.hesham.dev@gmail.com" className="inline-flex items-center gap-2 rounded-full glass gradient-border px-5 py-3 text-sm font-medium hover:bg-white/5 transition">
+              <Mail className="h-4 w-4" /> a.hesham.dev@gmail.com
+            </a>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-5 pt-2 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5"><MapPin className="h-4 w-4" /> Cairo, Egypt</span>
+            <span className="inline-flex items-center gap-1.5"><Phone className="h-4 w-4" /> +20 106 017 3492</span>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-md"
+        >
+          <div className="relative animate-float">
+            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/40 via-accent/30 to-transparent blur-2xl" />
+            <div className="relative gradient-border rounded-[2rem] overflow-hidden glass">
+              <img src={portrait} alt="Ahmed Hesham Kamel portrait" className="w-full h-auto object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+            </div>
+            <FloatingBadge className="absolute -left-6 top-10" icon={<Brain className="h-4 w-4" />} label="LLMs & RAG" />
+            <FloatingBadge className="absolute -right-4 top-1/2" icon={<Mic className="h-4 w-4" />} label="Speech AI" delay={0.4} />
+            <FloatingBadge className="absolute left-6 -bottom-4" icon={<Sparkles className="h-4 w-4" />} label="Generative AI" delay={0.8} />
+          </div>
+        </motion.div>
+      </motion.div>
+
+      <motion.a
+        href="#about"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground text-xs flex flex-col items-center gap-2"
+      >
+        Scroll
+        <ChevronDown className="h-4 w-4 animate-bounce" />
+      </motion.a>
+    </section>
+  );
+}
+
+function FloatingBadge({ icon, label, className = "", delay = 0 }: { icon: React.ReactNode; label: string; className?: string; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: 0.8 + delay, duration: 0.6, ease: "easeOut" }}
+      className={`glass gradient-border rounded-full px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-lg ${className}`}
+    >
+      <span className="text-primary">{icon}</span> {label}
+    </motion.div>
+  );
+}
+
+function Marquee() {
+  const items = ["PyTorch", "TensorFlow", "Hugging Face", "LangChain", "OpenAI", "FastAPI", "Docker", "Whisper", "Transformers", "RAG", "LoRA / PEFT", "Diffusion Models"];
+  return (
+    <section className="relative border-y border-border/60 bg-surface/30 backdrop-blur-sm py-6 overflow-hidden">
+      <div className="flex animate-marquee whitespace-nowrap w-max">
+        {[...items, ...items].map((it, i) => (
+          <span key={i} className="mx-8 font-mono text-sm uppercase tracking-widest text-muted-foreground/70 flex items-center gap-8">
+            {it}
+            <span className="h-1 w-1 rounded-full bg-primary/60" />
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <Section id="about" eyebrow="01 — About" title="Turning AI research into real-world products.">
+      <div className="grid md:grid-cols-3 gap-6">
+        <motion.p variants={fadeUp} className="md:col-span-2 text-lg leading-relaxed text-muted-foreground">
+          I'm an Applied AI Engineer and AI student with hands-on experience across{" "}
+          <span className="text-foreground">Generative AI, NLP, speech processing, and LLM-powered applications</span>. I build intelligent systems using transformers, RAG pipelines, prompt engineering, and modern deployment workflows — with a focus on shipping practical, dependable solutions.
+        </motion.p>
+        <motion.div variants={fadeUp} className="space-y-3">
+          {[
+            { k: "Focus", v: "Generative AI · LLMs" },
+            { k: "Based in", v: "Cairo, Egypt" },
+            { k: "Status", v: "Open to opportunities" },
+          ].map((r) => (
+            <div key={r.k} className="flex items-baseline justify-between border-b border-border/60 pb-2">
+              <span className="text-xs uppercase tracking-widest text-muted-foreground">{r.k}</span>
+              <span className="text-sm font-medium">{r.v}</span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </Section>
+  );
+}
+
+function Skills() {
+  const groups = [
+    { icon: Code2, title: "Languages", items: ["Python", "SQL"] },
+    { icon: Brain, title: "AI / ML", items: ["Machine Learning", "Deep Learning", "NLP", "Generative AI"] },
+    { icon: Sparkles, title: "LLMs", items: ["RAG", "Prompt Engineering", "Transformers", "Agentic AI"] },
+    { icon: Cpu, title: "Frameworks", items: ["PyTorch", "TensorFlow", "Hugging Face", "LangChain"] },
+    { icon: Rocket, title: "APIs & Deployment", items: ["FastAPI", "OpenAI API", "REST APIs", "Docker"] },
+    { icon: Database, title: "Data", items: ["Pandas", "NumPy", "Statistics", "Probability"] },
+  ];
+  return (
+    <Section id="skills" eyebrow="02 — Toolkit" title="Skills & technologies I work with daily.">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {groups.map((g, i) => (
+          <motion.div
+            key={g.title}
+            variants={fadeUp}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="group relative glass gradient-border rounded-2xl p-6 overflow-hidden"
+          >
+            <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition" />
+            <div className="relative">
+              <div className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-primary/15 text-primary mb-4">
+                <g.icon className="h-5 w-5" />
+              </div>
+              <h3 className="font-display text-lg font-semibold mb-3">{g.title}</h3>
+              <div className="flex flex-wrap gap-1.5">
+                {g.items.map((it) => (
+                  <span key={it} className="text-xs rounded-full px-2.5 py-1 bg-white/5 border border-border/60 text-muted-foreground">
+                    {it}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <span className="absolute bottom-3 right-4 font-mono text-xs text-muted-foreground/50">0{i + 1}</span>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Experience() {
+  const items = [
+    {
+      icon: Briefcase,
+      role: "Generative AI Professional Trainee",
+      org: "Skills Dynamix — Digital Egypt Pioneers Initiative (DEPI)",
+      period: "Nov 2025 — Jul 2026",
+      bullets: [
+        "Selected for the DEPI Generative AI track among competitive applicants.",
+        "Trained in Machine Learning, Deep Learning, Transformers, and Generative AI applications.",
+        "Worked with LLMs, prompt engineering, RAG systems, agentic AI, and API integration.",
+        "Hands-on with GPT/BERT, LoRA, PEFT, diffusion models, and AI deployment workflows.",
+      ],
+    },
+    {
+      icon: Users,
+      role: "Technical Member · Statistics & Probability Instructor",
+      org: "Artificial Intelligence Club — Arab Open University",
+      period: "Oct 2024 — Jan 2025",
+      bullets: [
+        "Prepared and delivered introductory statistics and probability sessions.",
+        "Covered descriptive statistics, probability foundations, and Bayes' Theorem.",
+      ],
+    },
+  ];
+  return (
+    <Section id="experience" eyebrow="03 — Experience" title="Where I've trained, built, and contributed.">
+      <div className="relative pl-6 sm:pl-10">
+        <div className="absolute left-2 sm:left-4 top-2 bottom-2 w-px bg-gradient-to-b from-primary/60 via-accent/40 to-transparent" />
+        <div className="space-y-10">
+          {items.map((it) => (
+            <motion.article key={it.role} variants={fadeUp} className="relative">
+              <div className="absolute -left-[1.65rem] sm:-left-[2.15rem] top-1.5 h-4 w-4 rounded-full bg-primary shadow-[0_0_0_4px_var(--background),0_0_20px_var(--primary)]" />
+              <div className="glass gradient-border rounded-2xl p-6">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                      <it.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-semibold">{it.role}</h3>
+                      <p className="text-sm text-muted-foreground mt-0.5">{it.org}</p>
+                    </div>
+                  </div>
+                  <span className="font-mono text-xs text-muted-foreground bg-white/5 border border-border/60 rounded-full px-3 py-1">
+                    {it.period}
+                  </span>
+                </div>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {it.bullets.map((b) => (
+                    <li key={b} className="flex gap-2.5">
+                      <span className="mt-2 h-1 w-1 rounded-full bg-primary shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function Projects() {
+  const projects = [
+    {
+      title: "Quran Reading Correction Using AI",
+      period: "Jul 2025 — Nov 2026",
+      tagline: "A speech-AI system that listens to Quran recitation and corrects mistakes in real time.",
+      points: [
+        "Speech processing and word-level alignment built on top of Whisper.",
+        "Real-time error detection with NLP-driven post-processing.",
+        "Designed for low-latency feedback for learners and teachers.",
+      ],
+      stack: ["Whisper", "PyTorch", "NLP", "FastAPI", "Python"],
+      icon: Mic,
+    },
+  ];
+  return (
+    <Section id="projects" eyebrow="04 — Selected Work" title="Projects that translate AI research into impact.">
+      <div className="grid lg:grid-cols-2 gap-6">
+        {projects.map((p) => (
+          <motion.article
+            key={p.title}
+            variants={fadeUp}
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.4 }}
+            className="group relative glass gradient-border rounded-3xl p-8 overflow-hidden"
+          >
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_30%_0%,oklch(0.86_0.18_165/0.18),transparent_50%)]" />
+            <div className="relative">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+                  <p.icon className="h-6 w-6" />
+                </div>
+                <span className="font-mono text-xs text-muted-foreground">{p.period}</span>
+              </div>
+              <h3 className="font-display text-2xl font-semibold mb-2">{p.title}</h3>
+              <p className="text-muted-foreground mb-5">{p.tagline}</p>
+              <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                {p.points.map((pt) => (
+                  <li key={pt} className="flex gap-2.5">
+                    <span className="mt-2 h-1 w-1 rounded-full bg-accent shrink-0" />
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-1.5">
+                {p.stack.map((s) => (
+                  <span key={s} className="font-mono text-[11px] uppercase tracking-wider rounded-full px-2.5 py-1 bg-white/5 border border-border/60 text-muted-foreground">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.article>
+        ))}
+
+        <motion.div variants={fadeUp} className="relative glass gradient-border rounded-3xl p-8 flex flex-col justify-between overflow-hidden">
+          <div>
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/15 text-accent mb-4">
+              <MessageSquare className="h-6 w-6" />
+            </div>
+            <h3 className="font-display text-2xl font-semibold mb-2">More projects in progress.</h3>
+            <p className="text-muted-foreground">
+              I'm currently building experiments around agentic AI, retrieval-augmented assistants, and domain-specific fine-tuning. Reach out if you'd like an early look.
+            </p>
+          </div>
+          <a href="#contact" className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition">
+            Start a conversation <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </motion.div>
+      </div>
+    </Section>
+  );
+}
+
+function Education() {
+  return (
+    <Section id="education" eyebrow="05 — Education" title="Academic foundation.">
+      <motion.div variants={fadeUp} className="glass gradient-border rounded-2xl p-6 sm:p-8 flex flex-wrap items-start gap-6 justify-between">
+        <div className="flex items-start gap-4">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+            <GraduationCap className="h-6 w-6" />
+          </div>
+          <div>
+            <h3 className="font-display text-xl font-semibold">Bachelor's Degree — Information Technology</h3>
+            <p className="text-muted-foreground mt-1">Arab Open University, Cairo · Major in Artificial Intelligence</p>
+          </div>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground bg-white/5 border border-border/60 rounded-full px-3 py-1">
+          Sep 2021 — Jul 2026
+        </span>
+      </motion.div>
+    </Section>
+  );
+}
+
+function Contact() {
+  return (
+    <Section id="contact" eyebrow="06 — Contact" title="Have a problem worth solving with AI?">
+      <motion.div variants={fadeUp} className="relative glass gradient-border rounded-3xl p-8 sm:p-12 text-center overflow-hidden">
+        <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_50%_0%,oklch(0.86_0.18_165/0.25),transparent_60%)]" />
+        <div className="relative">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            I'm open to AI engineering roles, internships, research collaborations, and product builds — especially around LLM applications, RAG, and speech AI.
+          </p>
+          <a href="mailto:a.hesham.dev@gmail.com" className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-gradient hover:opacity-90 transition">
+            a.hesham.dev@gmail.com
+            <ArrowUpRight className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
+          </a>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <ContactPill icon={<Phone className="h-4 w-4" />} label="+20 106 017 3492" href="tel:+201060173492" />
+            <ContactPill icon={<MapPin className="h-4 w-4" />} label="Cairo, Egypt" />
+            <ContactPill icon={<LinkedinIcon />} label="LinkedIn" href="https://www.linkedin.com/in/aheshamdev" />
+            <ContactPill icon={<GithubIcon />} label="GitHub" href="https://www.github.com/aheshamdev" />
+            <ContactPill icon={<WhatsAppIcon />} label="WhatsApp" href="https://wa.me/201060173492" />
+            <motion.a
+              href="/__l5e/assets-v1/495f5d4e-351b-42a6-a9e5-e1b63be41905/Ahmed_Hesham_Kamel_CV.pdf"
+              download="Ahmed_Hesham_Kamel_CV.pdf"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-[0_0_20px_oklch(0.86_0.18_165/0.35)]"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Download CV
+            </motion.a>
+          </div>
+        </div>
+      </motion.div>
+    </Section>
+  );
+}
+
+function ContactPill({ icon, label, href }: { icon: React.ReactNode; label: string; href?: string }) {
+  const cls = "inline-flex items-center gap-2 rounded-full glass gradient-border px-4 py-2 text-sm hover:bg-white/5 transition";
+  return href ? (
+    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className={cls}>
+      <span className="text-primary">{icon}</span> {label}
+    </a>
+  ) : (
+    <span className={cls}><span className="text-primary">{icon}</span> {label}</span>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="relative border-t border-border/60 mt-20 py-8 px-6">
+      <div className="container mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
+        <span className="font-display">© {new Date().getFullYear()} Ahmed Hesham Kamel</span>
+        <span className="font-mono text-xs">Designed & built with care · Cairo → World</span>
+      </div>
+    </footer>
+  );
+}
+
+function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: React.ReactNode }) {
+  return (
+    <section id={id} className="relative py-24 sm:py-32 px-6">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={stagger}
+        className="container mx-auto max-w-6xl"
+      >
+        <motion.div variants={fadeUp} className="mb-12 sm:mb-16 max-w-3xl">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</span>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl font-semibold leading-tight">{title}</h2>
+        </motion.div>
+        {children}
+      </motion.div>
+    </section>
+  );
+}
