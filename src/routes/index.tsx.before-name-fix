@@ -65,17 +65,17 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "Portfolio of Miller George — Flutter Developer & Mobile App Engineer",
+          "Portfolio of Eng. Miller George — Flutter Developer & Mobile App Engineer",
       },
       {
         name: "description",
         content:
-          "Portfolio of Miller George, a Software Developer and Mobile App Engineer specializing in Flutter, Firebase, REST APIs, and scalable mobile applications.",
+          "Portfolio of Eng. Miller George, a Software Developer and Mobile App Engineer specializing in Flutter, Firebase, REST APIs, and scalable mobile applications.",
       },
       {
         property: "og:title",
         content:
-          "Miller George — Flutter Developer & Mobile App Engineer",
+          "Eng. Miller George — Flutter Developer & Mobile App Engineer",
       },
       {
         property: "og:description",
@@ -251,7 +251,7 @@ function Hero() {
           >
             I&apos;m{" "}
             <span className="text-foreground font-medium">
-              Miller George
+              Eng. Miller George
             </span>{" "}
             — a Software Developer and Mobile App Engineer specializing in
             Flutter, Firebase, REST APIs, and practical full-stack products.
@@ -311,7 +311,7 @@ function Hero() {
             <div className="relative gradient-border rounded-[2rem] overflow-hidden glass">
               <img
                 src={portrait}
-                alt="Miller George portrait"
+                alt="Eng. Miller George portrait"
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
@@ -920,7 +920,7 @@ function Footer() {
     <footer className="relative border-t border-border/60 mt-20 py-8 px-6">
       <div className="container mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
         <span className="font-display">
-          © {new Date().getFullYear()} Miller George
+          © {new Date().getFullYear()} Eng. Miller George
         </span>
         <span className="font-mono text-xs">
           Flutter Developer · Cairo, Egypt
