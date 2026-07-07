@@ -1,9 +1,0 @@
-# Netlify configuration for TanStack Start
-[build]
-  command = "vite build"
-  publish = "dist/client"
-
-[build.environment]
-  # Pin Node.js version to ensure compatibility and consistent build behavior
-  NODE_VERSION = "20"
-
