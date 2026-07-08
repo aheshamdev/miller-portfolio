@@ -418,32 +418,6 @@ var Rocket = createLucideIcon("rocket", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var Sparkles = createLucideIcon("sparkles", [
-	["path", {
-		d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
-		key: "1s2grr"
-	}],
-	["path", {
-		d: "M20 2v4",
-		key: "1rf3ol"
-	}],
-	["path", {
-		d: "M22 4h-4",
-		key: "gwowj6"
-	}],
-	["circle", {
-		cx: "4",
-		cy: "20",
-		r: "2",
-		key: "6kqj1y"
-	}]
-]);
-/**
-* @license lucide-react v1.23.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Trophy = createLucideIcon("trophy", [
 	["path", {
 		d: "M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978",
@@ -497,4 +471,4 @@ var Users = createLucideIcon("users", [
 	}]
 ]);
 //#endregion
-export { Phone as a, Mail as c, Database as d, Cpu as f, ArrowUpRight as g, Briefcase as h, Rocket as i, GraduationCap as l, ChevronDown as m, Trophy as n, PackageCheck as o, CodeXml as p, Sparkles as r, MapPin as s, Users as t, Download as u };
+export { PackageCheck as a, GraduationCap as c, Cpu as d, CodeXml as f, ArrowUpRight as h, Phone as i, Download as l, Briefcase as m, Trophy as n, MapPin as o, ChevronDown as p, Rocket as r, Mail as s, Users as t, Database as u };

@@ -1,8 +1,8 @@
 import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { i as motion, n as useTransform, r as useScroll, t as useReducedMotion } from "../_libs/framer-motion.mjs";
-import { a as Phone, c as Mail, d as Database, f as Cpu, g as ArrowUpRight, h as Briefcase, i as Rocket, l as GraduationCap, m as ChevronDown, n as Trophy, o as PackageCheck, p as CodeXml, r as Sparkles, s as MapPin, t as Users, u as Download } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Co5fVZVh.js
+import { a as PackageCheck, c as GraduationCap, d as Cpu, f as CodeXml, h as ArrowUpRight, i as Phone, l as Download, m as Briefcase, n as Trophy, o as MapPin, p as ChevronDown, r as Rocket, s as Mail, t as Users, u as Database } from "../_libs/lucide-react.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BuaiTnOB.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var miller_george_default = "/assets/miller-george-BS55s6Go.jpg";
@@ -234,9 +234,9 @@ function Hero() {
 						className: "flex flex-wrap items-center gap-5 pt-2 text-sm text-muted-foreground",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-								href: "mailto:m2458g@gmail.com",
+								href: "mailto:millergeorgemm@gmail.com",
 								className: "inline-flex items-center gap-1.5 hover:text-foreground transition-colors",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "h-4 w-4" }), " m2458g@gmail.com"]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "h-4 w-4" }), " millergeorgemm@gmail.com"]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 								className: "inline-flex items-center gap-1.5",
@@ -346,16 +346,16 @@ function Marquee() {
 		"Firebase",
 		"Provider",
 		"REST APIs",
-		"OpenStreetMap",
-		"Cloudinary",
+		"OpenStreetMap API",
+		"Algolia",
 		"Git",
 		"GitHub",
+		"Cloudinary",
+		"ADB",
 		"Java",
 		"Python",
-		"C#",
-		"PHP",
-		"JavaScript",
-		"SQL"
+		"VS Code",
+		"Android Studio"
 	];
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		className: "relative border-y border-border/60 bg-surface/30 backdrop-blur-sm py-6 overflow-hidden",
@@ -379,13 +379,13 @@ function About() {
 				variants: fadeUp,
 				className: "md:col-span-2 text-lg leading-relaxed text-muted-foreground",
 				children: [
-					"I'm a Software Developer and Computer Science graduate focused on mobile application development using",
+					"I'm a Software Developer specializing in mobile application development using",
 					" ",
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-foreground",
-						children: "Flutter, Dart, Firebase, and modern API integrations"
+						children: "Flutter and Firebase"
 					}),
-					". I enjoy converting product ideas into polished applications, optimizing system performance, and integrating AI-driven features into useful real-world solutions."
+					". Experienced in engineering robust full-stack solutions, designing scalable software architectures, and analyzing complex system requirements. Adept at managing the complete software development lifecycle, from conceptualization to deployment, to deliver high-quality, maintainable code and functional applications."
 				]
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(motion.div, {
 				variants: fadeUp,
@@ -423,41 +423,30 @@ function Skills() {
 		eyebrow: "02 — Toolkit",
 		title: "Technologies and skills behind my work.",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "grid sm:grid-cols-2 lg:grid-cols-3 gap-4",
+			className: "grid sm:grid-cols-2 lg:grid-cols-4 gap-4",
 			children: [
 				{
 					icon: CodeXml,
-					title: "Programming",
+					title: "Programming Languages",
 					items: [
 						"Dart",
-						"Java",
 						"Python",
-						"C#",
-						"PHP",
-						"JavaScript",
-						"HTML",
-						"CSS",
-						"SQL"
+						"Java"
 					]
 				},
 				{
 					icon: Rocket,
-					title: "Mobile Development",
-					items: [
-						"Flutter",
-						"Provider",
-						"Responsive UI",
-						"State Management"
-					]
+					title: "Frameworks & Libraries",
+					items: ["Flutter", "Provider"]
 				},
 				{
 					icon: Database,
-					title: "Backend & Databases",
+					title: "Backend & APIs",
 					items: [
 						"Firebase",
-						"Cloud Firestore",
-						"Authentication",
-						"RESTful APIs"
+						"REST APIs",
+						"OpenStreetMap API",
+						"Algolia"
 					]
 				},
 				{
@@ -466,30 +455,10 @@ function Skills() {
 					items: [
 						"Git",
 						"GitHub",
-						"OpenStreetMap API",
 						"Cloudinary",
-						"ADB"
-					]
-				},
-				{
-					icon: Sparkles,
-					title: "Development Interests",
-					items: [
-						"AI Integration",
-						"Data Science",
-						"System Optimization",
-						"Full-Stack Development"
-					]
-				},
-				{
-					icon: Users,
-					title: "Professional Skills",
-					items: [
-						"Strategic Problem Solving",
-						"Analytical Thinking",
-						"Team Collaboration",
-						"Time Management",
-						"Adaptability"
+						"ADB",
+						"VS Code",
+						"Android Studio"
 					]
 				}
 			].map((group, index) => {
@@ -544,9 +513,10 @@ function Projects() {
 					period: "Graduation Project",
 					tagline: "A smart mobile application for household inventory, grocery planning, health calculations, and recipe recommendations.",
 					points: [
-						"Built inventory and grocery-list management features for daily household use.",
-						"Implemented a BMR module for personalized calorie and weight-goal recommendations.",
-						"Developed a recipe substitution engine based on the ingredients currently available."
+						"Directed the end-to-end development of a mobile application to manage household inventory, programming over 15 distinct grocery tracking features.",
+						"Analyzed physiological metrics to code a health module that calculates BMR and generates personalized recipe recommendations.",
+						"Co-authored technical documentation and coordinated report chapters for the project defense, securing 1st Place.",
+						"Constructed a smart recipe substitution engine generating meal alternatives based on available pantry items, reducing missing ingredients issues by an estimated 30%."
 					],
 					stack: [
 						"Flutter",
@@ -560,11 +530,7 @@ function Projects() {
 					title: "Smart Location Assistant",
 					period: "Mobile Application",
 					tagline: "A location-based Flutter application that provides personalized mapping and navigation features.",
-					points: [
-						"Integrated OpenStreetMap to provide maps and location-based services.",
-						"Generated personalized place recommendations using saved favorite locations.",
-						"Implemented route directions, coordinate tracking, and voice-guided navigation."
-					],
+					points: ["Integrated the open-source OpenStreetMap API to calculate and deliver the top 5 personalized place recommendations based on saved geographic coordinates.", "Programmed core mapping features including real-time route directions, precise coordinate tracking, and voice-guided navigation."],
 					stack: [
 						"Flutter",
 						"OpenStreetMap API",
@@ -576,28 +542,19 @@ function Projects() {
 					title: "The Imposter Game",
 					period: "Multiplayer Game",
 					tagline: "An interactive multiplayer strategy game supporting online and offline play modes.",
-					points: [
-						"Implemented secure user authentication and Firebase-backed game services.",
-						"Developed real-time turn logic and a dynamic player voting system.",
-						"Created role-distribution algorithms based on lobby size and game settings."
-					],
+					points: ["Deployed an interactive multiplayer strategy game supporting both online and offline play modes for lobbies of up to 10 concurrent players.", "Devised role distribution algorithms to calculate and distribute imposter variables across 3 distinct lobby sizes and game settings."],
 					stack: [
 						"Flutter",
 						"Firebase",
-						"Authentication",
 						"Game Logic"
 					],
 					icon: Users
 				},
 				{
-					title: "Hospital Management System",
+					title: "Hospital Management System (HMS)",
 					period: "Desktop Application",
 					tagline: "A Java desktop system designed to streamline healthcare administration and record management.",
-					points: [
-						"Designed modules for doctor schedules and patient-record management.",
-						"Implemented structured storage for longitudinal medical histories.",
-						"Used Java and SQL to manage application logic and persistent data."
-					],
+					points: ["Created a desktop application to streamline daily administrative workflows across multiple healthcare departments.", "Deployed modules to securely process and manage 50+ doctor schedules, over 200 patient records, and longitudinal medical histories."],
 					stack: [
 						"Java",
 						"SQL",
@@ -778,9 +735,9 @@ function Contact() {
 						children: "I'm open to Flutter development roles, mobile application projects, software engineering opportunities, and collaborative product builds."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-						href: "mailto:m2458g@gmail.com",
+						href: "mailto:millergeorgemm@gmail.com",
 						className: "mt-8 inline-flex flex-wrap items-center justify-center gap-3 font-display text-2xl sm:text-4xl lg:text-5xl font-semibold text-gradient hover:opacity-90 transition",
-						children: ["m2458g@gmail.com", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, { className: "h-8 w-8 sm:h-10 sm:w-10 text-primary" })]
+						children: ["millergeorgemm@gmail.com", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, { className: "h-8 w-8 sm:h-10 sm:w-10 text-primary" })]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "mt-10 flex flex-wrap justify-center gap-3",
